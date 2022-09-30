@@ -1,0 +1,36 @@
+{
+  "name": "ecommerce_api",
+  "version": "1.0.0",
+  "description": "API NodeJS do projeto Ecommerce Galois",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm test",
+    "start:dev": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://brunocava3@bitbucket.org/brunocava3/sette_api.git"
+  },
+  "keywords": [
+    "api"
+  ],
+  "author": "Bruno Silveira",
+  "license": "ISC",
+  "homepage": "https://bitbucket.org/brunocava3/ecommerce_api#readme",
+  "dependencies": {
+    "@sendgrid/mail": "^7.6.2",
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "js2xmlparser": "^4.0.2",
+    "jsonwebtoken": "^8.5.1",
+    "lodash": "^4.17.21",
+    "md5": "^2.3.0",
+    "mongoose": "^5.13.7",
+    "nodemon": "^2.0.12",
+    "soap": "^0.45.0",
+    "xml-mapping": "^1.7.2",
+    "xml2json": "^0.12.0"
+  }
+}

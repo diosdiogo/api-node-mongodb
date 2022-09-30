@@ -1,0 +1,548 @@
+<xs:element name="TPRODUTO">
+    <xs:complexType>
+        <xs:sequence>
+        <xs:element name="CODCOLPRD" msdata:Caption="Coligada" type="xs:short" minOccurs="0" />
+        <xs:element name="CODCOLIGADA" msdata:Caption="Coligada" type="xs:short" default="3" />
+        <xs:element name="IDPRD" msdata:Caption="Identificador" type="xs:int" default="75013" />
+        <xs:element name="CODIGOPRD" msdata:Caption="Código do Produtos" minOccurs="0">
+            <xs:simpleType>
+            <xs:restriction base="xs:string">
+                <xs:maxLength value="30" />
+            </xs:restriction>
+            </xs:simpleType>
+        </xs:element>
+        <xs:element name="NOMEFANTASIA" msdata:Caption="Nome Fantasia">
+            <xs:simpleType>
+            <xs:restriction base="xs:string">
+                <xs:maxLength value="120" />
+            </xs:restriction>
+            </xs:simpleType>
+        </xs:element>
+        <xs:element name="CODIGOREDUZIDO" msdata:Caption="Código Reduzido" minOccurs="0">
+            <xs:simpleType>
+            <xs:restriction base="xs:string">
+                <xs:maxLength value="10" />
+            </xs:restriction>
+            </xs:simpleType>
+        </xs:element>
+        <xs:element name="CODFAB" msdata:Caption="Código do Fabricantes" minOccurs="0">
+            <xs:simpleType>
+            <xs:restriction base="xs:string">
+                <xs:maxLength value="15" />
+            </xs:restriction>
+            </xs:simpleType>
+        </xs:element>
+        <xs:element name="NUMNOFABRIC" msdata:Caption="Número do Produto no Fabricante" minOccurs="0">
+            <xs:simpleType>
+            <xs:restriction base="xs:string">
+                <xs:maxLength value="100" />
+            </xs:restriction>
+            </xs:simpleType>
+        </xs:element>
+        <xs:element name="ULTIMONIVEL" msdata:Caption="Último Nível" type="xs:short" default="0" minOccurs="0" />
+        <xs:element name="TIPO" msdata:Caption="Tipo do Produto" default="P">
+            <xs:simpleType>
+            <xs:restriction base="xs:string">
+                <xs:maxLength value="1" />
+            </xs:restriction>
+            </xs:simpleType>
+        </xs:element>
+        <xs:element name="DESCRICAO" msdata:Caption="Descrição do Produto" minOccurs="0">
+            <xs:simpleType>
+            <xs:restriction base="xs:string">
+                <xs:maxLength value="240" />
+            </xs:restriction>
+            </xs:simpleType>
+        </xs:element>
+        <xs:element name="DESCRICAOAUX" msdata:Caption="Descrição Auxiliar" minOccurs="0">
+            <xs:simpleType>
+            <xs:restriction base="xs:string">
+                <xs:maxLength value="240" />
+            </xs:restriction>
+            </xs:simpleType>
+        </xs:element>
+        <xs:element name="CODIGOAUXILIAR" msdata:Caption="Código Auxiliar" minOccurs="0">
+            <xs:simpleType>
+            <xs:restriction base="xs:string">
+                <xs:maxLength value="20" />
+            </xs:restriction>
+            </xs:simpleType>
+        </xs:element>
+        <xs:element name="PRECO1" msdata:Caption="Preço a Vista" type="xs:decimal" default="0" minOccurs="0" />
+        <xs:element name="PRECO2" msdata:Caption="Preço a  Prazo" type="xs:decimal" default="0" minOccurs="0" />
+        <xs:element name="PRECO3" msdata:Caption="Preço 3" type="xs:decimal" default="0" minOccurs="0" />
+        <xs:element name="PRECO4" msdata:Caption="Preço 4" type="xs:decimal" default="0" minOccurs="0" />
+        <xs:element name="PRECO5" msdata:Caption="Preço 5" type="xs:decimal" default="0" minOccurs="0" />
+        <xs:element name="DATABASEPRECO1" msdata:Caption="Data Base Preço a Vista" msdata:DateTimeMode="Unspecified" type="xs:dateTime" default="2022-02-10T00:00:00" minOccurs="0" />
+        <xs:element name="DATABASEPRECO2" msdata:Caption="Data Base Preço a  Prazo" msdata:DateTimeMode="Unspecified" type="xs:dateTime" default="2022-02-10T00:00:00" minOccurs="0" />
+        <xs:element name="DATABASEPRECO3" msdata:Caption="Data Base Preço 3" msdata:DateTimeMode="Unspecified" type="xs:dateTime" minOccurs="0" />
+        <xs:element name="DATABASEPRECO4" msdata:Caption="Data Base Preço 4" msdata:DateTimeMode="Unspecified" type="xs:dateTime" minOccurs="0" />
+        <xs:element name="DATABASEPRECO5" msdata:Caption="Data Base Preço 5" msdata:DateTimeMode="Unspecified" type="xs:dateTime" minOccurs="0" />
+        <xs:element name="CODMOEPRECO1" msdata:Caption="Moeda Preço a Vista" default="R$" minOccurs="0">
+            <xs:simpleType>
+            <xs:restriction base="xs:string">
+                <xs:maxLength value="10" />
+            </xs:restriction>
+            </xs:simpleType>
+        </xs:element>
+        <xs:element name="CODMOEPRECO2" msdata:Caption="Moeda Preço a  Prazo" default="R$" minOccurs="0">
+            <xs:simpleType>
+            <xs:restriction base="xs:string">
+                <xs:maxLength value="10" />
+            </xs:restriction>
+            </xs:simpleType>
+        </xs:element>
+        <xs:element name="CODMOEPRECO3" msdata:Caption="Moeda Preço 3" minOccurs="0">
+            <xs:simpleType>
+            <xs:restriction base="xs:string">
+                <xs:maxLength value="10" />
+            </xs:restriction>
+            </xs:simpleType>
+        </xs:element>
+        <xs:element name="CODMOEPRECO4" msdata:Caption="Moeda Preço 4" minOccurs="0">
+            <xs:simpleType>
+            <xs:restriction base="xs:string">
+                <xs:maxLength value="10" />
+            </xs:restriction>
+            </xs:simpleType>
+        </xs:element>
+        <xs:element name="CODMOEPRECO5" msdata:Caption="Moeda Preço 5" minOccurs="0">
+            <xs:simpleType>
+            <xs:restriction base="xs:string">
+                <xs:maxLength value="10" />
+            </xs:restriction>
+            </xs:simpleType>
+        </xs:element>
+        <xs:element name="REFERENCIACCF" msdata:Caption="Referência NCM (A-Z)" minOccurs="0">
+            <xs:simpleType>
+            <xs:restriction base="xs:string">
+                <xs:maxLength value="1" />
+            </xs:restriction>
+            </xs:simpleType>
+        </xs:element>
+        <xs:element name="NUMEROCCF" msdata:Caption="Número NCM" minOccurs="0">
+            <xs:simpleType>
+            <xs:restriction base="xs:string">
+                <xs:maxLength value="14" />
+            </xs:restriction>
+            </xs:simpleType>
+        </xs:element>
+        <xs:element name="REFERENCIACP" msdata:Caption="Referência" type="xs:short" minOccurs="0" />
+        <xs:element name="DESCRICAOCP" msdata:Caption="Descrição" minOccurs="0">
+            <xs:simpleType>
+            <xs:restriction base="xs:string">
+                <xs:maxLength value="40" />
+            </xs:restriction>
+            </xs:simpleType>
+        </xs:element>
+        <xs:element name="PESOLIQUIDO" msdata:Caption="Peso Líquido" type="xs:decimal" minOccurs="0" />
+        <xs:element name="PESOBRUTO" msdata:Caption="Peso Bruto" type="xs:decimal" minOccurs="0" />
+        <xs:element name="COMPRIMENTO" msdata:Caption="Comprimento" type="xs:decimal" minOccurs="0" />
+        <xs:element name="ESPESSURA" msdata:Caption="Espessura" type="xs:decimal" minOccurs="0" />
+        <xs:element name="LARGURA" msdata:Caption="Largura" type="xs:decimal" minOccurs="0" />
+        <xs:element name="COR" msdata:Caption="Cor" minOccurs="0">
+            <xs:simpleType>
+            <xs:restriction base="xs:string">
+                <xs:maxLength value="15" />
+            </xs:restriction>
+            </xs:simpleType>
+        </xs:element>
+        <xs:element name="OBSERVACAO" msdata:Caption="Observação" minOccurs="0">
+            <xs:simpleType>
+            <xs:restriction base="xs:string">
+                <xs:maxLength value="10" />
+            </xs:restriction>
+            </xs:simpleType>
+        </xs:element>
+        <xs:element name="CODUNDCONTROLE" msdata:Caption="Unidade de Controle" default="UN" minOccurs="0">
+            <xs:simpleType>
+            <xs:restriction base="xs:string">
+                <xs:maxLength value="5" />
+            </xs:restriction>
+            </xs:simpleType>
+        </xs:element>
+        <xs:element name="CODCPG" msdata:Caption="Condição de Pagamento" minOccurs="0">
+            <xs:simpleType>
+            <xs:restriction base="xs:string">
+                <xs:maxLength value="5" />
+            </xs:restriction>
+            </xs:simpleType>
+        </xs:element>
+        <xs:element name="ESTOQUEMINIMO1" msdata:Caption="Estoque Mínimo 1" type="xs:decimal" minOccurs="0" />
+        <xs:element name="ESTOQUEMAXIMO1" msdata:Caption="Estoque Máximo 1" type="xs:decimal" minOccurs="0" />
+        <xs:element name="ESTOQUEMINIMO2" msdata:Caption="Estoque Mínimo 2" type="xs:decimal" minOccurs="0" />
+        <xs:element name="ESTOQUEMAXIMO2" msdata:Caption="Estoque Máximo 2" type="xs:decimal" minOccurs="0" />
+        <xs:element name="ESTOQUEMINIMO3" msdata:Caption="Estoque Mínimo 3" type="xs:decimal" minOccurs="0" />
+        <xs:element name="ESTOQUEMAXIMO3" msdata:Caption="Estoque Máximo 3" type="xs:decimal" minOccurs="0" />
+        <xs:element name="PONTODEPEDIDO1" msdata:Caption="Ponto de Pedido 1" type="xs:decimal" minOccurs="0" />
+        <xs:element name="PONTODEPEDIDO2" msdata:Caption="Ponto de Pedido 2" type="xs:decimal" minOccurs="0" />
+        <xs:element name="PONTODEPEDIDO3" msdata:Caption="Ponto de Pedido 3" type="xs:decimal" minOccurs="0" />
+        <xs:element name="DTCADASTRAMENTO" msdata:Caption="Data Cadastramento" msdata:DateTimeMode="Unspecified" type="xs:dateTime" minOccurs="0" />
+        <xs:element name="PERCENTCOMISSAO" msdata:Caption="% Comissão" type="xs:decimal" minOccurs="0" />
+        <xs:element name="DESCONTOCOMPRA" msdata:Caption="Desconto Compra" type="xs:decimal" minOccurs="0" />
+        <xs:element name="DESCONTOVENDA" msdata:Caption="Desconto Venda" type="xs:decimal" minOccurs="0" />
+        <xs:element name="CUSTOUNITARIO" msdata:Caption="Custo Unitário" type="xs:decimal" minOccurs="0" />
+        <xs:element name="DTCUSTOUNITARIO" msdata:Caption="Data Custo Unitário" msdata:DateTimeMode="Unspecified" type="xs:dateTime" minOccurs="0" />
+        <xs:element name="CODTIP" msdata:Caption="Tipo para Faturamento" minOccurs="0">
+            <xs:simpleType>
+            <xs:restriction base="xs:string">
+                <xs:maxLength value="10" />
+            </xs:restriction>
+            </xs:simpleType>
+        </xs:element>
+        <xs:element name="CODTB1FAT" msdata:Caption="Tipo" minOccurs="0">
+            <xs:simpleType>
+            <xs:restriction base="xs:string">
+                <xs:maxLength value="10" />
+            </xs:restriction>
+            </xs:simpleType>
+        </xs:element>
+        <xs:element name="CODTB2FAT" msdata:Caption="Classe" minOccurs="0">
+            <xs:simpleType>
+            <xs:restriction base="xs:string">
+                <xs:maxLength value="10" />
+            </xs:restriction>
+            </xs:simpleType>
+        </xs:element>
+        <xs:element name="CODTB3FAT" msdata:Caption="Status" minOccurs="0">
+            <xs:simpleType>
+            <xs:restriction base="xs:string">
+                <xs:maxLength value="10" />
+            </xs:restriction>
+            </xs:simpleType>
+        </xs:element>
+        <xs:element name="CODTB4FAT" msdata:Caption="Tabela de estoque 4" minOccurs="0">
+            <xs:simpleType>
+            <xs:restriction base="xs:string">
+                <xs:maxLength value="10" />
+            </xs:restriction>
+            </xs:simpleType>
+        </xs:element>
+        <xs:element name="CODTB5FAT" msdata:Caption="Tabela de estoque 5" minOccurs="0">
+            <xs:simpleType>
+            <xs:restriction base="xs:string">
+                <xs:maxLength value="10" />
+            </xs:restriction>
+            </xs:simpleType>
+        </xs:element>
+        <xs:element name="MARGEMBRUTALUCRO" msdata:Caption="Margem Bruta do Lucro" type="xs:decimal" minOccurs="0" />
+        <xs:element name="PERCENTCOMISSAO2" msdata:Caption="% Comissão 2" type="xs:decimal" minOccurs="0" />
+        <xs:element name="QTDEVOLUME" msdata:Caption="Quantidade Volumes" type="xs:short" default="1" minOccurs="0" />
+        <xs:element name="GRPFATURAMENTO" msdata:Caption="Grupo de Faturamento" minOccurs="0">
+            <xs:simpleType>
+            <xs:restriction base="xs:string">
+                <xs:maxLength value="10" />
+            </xs:restriction>
+            </xs:simpleType>
+        </xs:element>
+        <xs:element name="CODUNDCOMPRA" msdata:Caption="Unidade de Compra" default="UN" minOccurs="0">
+            <xs:simpleType>
+            <xs:restriction base="xs:string">
+                <xs:maxLength value="5" />
+            </xs:restriction>
+            </xs:simpleType>
+        </xs:element>
+        <xs:element name="CODUNDVENDA" msdata:Caption="Unidade de Venda" default="UN" minOccurs="0">
+            <xs:simpleType>
+            <xs:restriction base="xs:string">
+                <xs:maxLength value="5" />
+            </xs:restriction>
+            </xs:simpleType>
+        </xs:element>
+        <xs:element name="EPERIODICO" msdata:Caption="Tipo de Faturamento" type="xs:short" minOccurs="0" />
+        <xs:element name="CAMPOLIVRE" msdata:Caption="Campo Livre 1" type="xs:int" minOccurs="0" />
+        <xs:element name="CAMPOLIVRE2" msdata:Caption="Campo Livre 2" minOccurs="0">
+            <xs:simpleType>
+            <xs:restriction base="xs:string">
+                <xs:maxLength value="5" />
+            </xs:restriction>
+            </xs:simpleType>
+        </xs:element>
+        <xs:element name="CAMPOLIVRE3" msdata:Caption="Campo Livre 3" minOccurs="0">
+            <xs:simpleType>
+            <xs:restriction base="xs:string">
+                <xs:maxLength value="15" />
+            </xs:restriction>
+            </xs:simpleType>
+        </xs:element>
+        <xs:element name="IDPRODUTORELAC" msdata:Caption="Produto para Encargos" type="xs:int" minOccurs="0" />
+        <xs:element name="CUSTOMEDIO" msdata:Caption="Custo Médio" type="xs:decimal" minOccurs="0" />
+        <xs:element name="DATACUSTOMEDIO" msdata:Caption="Data Custo Médio" msdata:DateTimeMode="Unspecified" type="xs:dateTime" minOccurs="0" />
+        <xs:element name="DTULTIMACOMPRA" msdata:Caption="Data Custo Reposição" msdata:DateTimeMode="Unspecified" type="xs:dateTime" minOccurs="0" />
+        <xs:element name="CUSTOREPOSICAO" msdata:Caption="Custo Reposição A" type="xs:decimal" minOccurs="0" />
+        <xs:element name="DTULTIMACOMPRAB" msdata:Caption="Data Custo Reposição B" msdata:DateTimeMode="Unspecified" type="xs:dateTime" minOccurs="0" />
+        <xs:element name="CUSTOREPOSICAOB" msdata:Caption="Custo Reposição B" type="xs:decimal" minOccurs="0" />
+        <xs:element name="VALIDADEMINIMA" msdata:Caption="Dias de Validade Mínima" type="xs:int" minOccurs="0" />
+        <xs:element name="TOLINFPRECO" msdata:Caption="Tolerância Inferior Preço" type="xs:decimal" minOccurs="0" />
+        <xs:element name="PERCENTCOMISSAO3" msdata:Caption="% Comissão 3" type="xs:decimal" minOccurs="0" />
+        <xs:element name="CODGRD" msdata:Caption="Grade Numerada" minOccurs="0">
+            <xs:simpleType>
+            <xs:restriction base="xs:string">
+                <xs:maxLength value="20" />
+            </xs:restriction>
+            </xs:simpleType>
+        </xs:element>
+        <xs:element name="TIPOCONTA" msdata:Caption="Tipo de Conta" minOccurs="0">
+            <xs:simpleType>
+            <xs:restriction base="xs:string">
+                <xs:maxLength value="1" />
+            </xs:restriction>
+            </xs:simpleType>
+        </xs:element>
+        <xs:element name="LOCALDESCARGA" msdata:Caption="Local de Descarga" minOccurs="0">
+            <xs:simpleType>
+            <xs:restriction base="xs:string">
+                <xs:maxLength value="30" />
+            </xs:restriction>
+            </xs:simpleType>
+        </xs:element>
+        <xs:element name="CODCOLCONTAGER" msdata:Caption="Coligada Conta Gerencial" type="xs:short" minOccurs="0" />
+        <xs:element name="CODCONTAGER" msdata:Caption="Conta Gerencial Default" minOccurs="0">
+            <xs:simpleType>
+            <xs:restriction base="xs:string">
+                <xs:maxLength value="40" />
+            </xs:restriction>
+            </xs:simpleType>
+        </xs:element>
+        <xs:element name="USANUMDECPRECO" msdata:Caption="Alterar edição do preço" type="xs:short" default="0" minOccurs="0" />
+        <xs:element name="NUMDECPRECO" msdata:Caption="Número de Decimais do Preço (0-4)" type="xs:short" minOccurs="0" />
+        <xs:element name="TEMPO" msdata:Caption="Tempo do Serviço" type="xs:decimal" minOccurs="0" />
+        <xs:element name="CLASSEFISCALECF" msdata:Caption="Classe Fiscal (ECF)" type="xs:short" minOccurs="0" />
+        <xs:element name="MULTIPLOPRD" msdata:Caption="Múltiplo Quantidade Compra" type="xs:decimal" minOccurs="0" />
+        <xs:element name="MULTIPLOPRDVENDA" msdata:Caption="Múltiplo Quantidade Venda" type="xs:decimal" minOccurs="0" />
+        <xs:element name="INATIVO" msdata:Caption="Inativo" type="xs:short" default="0" minOccurs="0" />
+        <xs:element name="CODTIPOAPL" msdata:Caption="Tipo de Aplicação" type="xs:string" minOccurs="0" />
+        <xs:element name="CODCOLUNA" msdata:Caption="Coluna" minOccurs="0">
+            <xs:simpleType>
+            <xs:restriction base="xs:string">
+                <xs:maxLength value="3" />
+            </xs:restriction>
+            </xs:simpleType>
+        </xs:element>
+        <xs:element name="CODLINHA" msdata:Caption="Linha" minOccurs="0">
+            <xs:simpleType>
+            <xs:restriction base="xs:string">
+                <xs:maxLength value="3" />
+            </xs:restriction>
+            </xs:simpleType>
+        </xs:element>
+        <xs:element name="DATAEXTRA1" msdata:Caption="Data Opcional 1" msdata:DateTimeMode="Unspecified" type="xs:dateTime" minOccurs="0" />
+        <xs:element name="DATAEXTRA2" msdata:Caption="Data Opcional 2" msdata:DateTimeMode="Unspecified" type="xs:dateTime" minOccurs="0" />
+        <xs:element name="PESAVEL" msdata:Caption="Pesável" type="xs:short" minOccurs="0" />
+        <xs:element name="TOLERANCIASUP" msdata:Caption="Tolerancia Superior Quantidade" type="xs:decimal" minOccurs="0" />
+        <xs:element name="TOLERANCIAINF" msdata:Caption="Tolerancia Inferior Quantidade" type="xs:decimal" minOccurs="0" />
+        <xs:element name="CODGRUPO" msdata:Caption="Grupo de Patrimônio" minOccurs="0">
+            <xs:simpleType>
+            <xs:restriction base="xs:string">
+                <xs:maxLength value="10" />
+            </xs:restriction>
+            </xs:simpleType>
+        </xs:element>
+        <xs:element name="DATAULTALTERACAO" msdata:Caption="Data da Última Alteração" msdata:DateTimeMode="Unspecified" type="xs:dateTime" minOccurs="0" />
+        <xs:element name="IDIMAGEM" msdata:Caption="Imagem" type="xs:int" minOccurs="0" />
+        <xs:element name="DIAMETRO" msdata:Caption="Diâmetro" type="xs:decimal" minOccurs="0" />
+        <xs:element name="CONTROLADOPORLOTE" msdata:Caption="Controlado por Lote" type="xs:int" default="0" minOccurs="0" />
+        <xs:element name="TIPOCALCULOCUSTO" msdata:Caption="Tipo Cálculo de Custo" type="xs:short" minOccurs="0" />
+        <xs:element name="MASCARANUMSERIE" msdata:Caption="Máscara Número de Série" minOccurs="0">
+            <xs:simpleType>
+            <xs:restriction base="xs:string">
+                <xs:maxLength value="30" />
+            </xs:restriction>
+            </xs:simpleType>
+        </xs:element>
+        <xs:element name="USANUMSERIE" msdata:Caption="Usa Número de Série" type="xs:int" default="0" minOccurs="0" />
+        <xs:element name="CUSTOPADRAO" msdata:Caption="Custo Padrão" type="xs:int" minOccurs="0" />
+        <xs:element name="CODUSUARIO" msdata:Caption="Usuário da Última Alteração" default="eintegracao" minOccurs="0">
+            <xs:simpleType>
+            <xs:restriction base="xs:string">
+                <xs:maxLength value="20" />
+            </xs:restriction>
+            </xs:simpleType>
+        </xs:element>
+        <xs:element name="TEMPOVALIDADE" msdata:Caption="Validade (em dias)" type="xs:int" minOccurs="0" />
+        <xs:element name="USUARIOCRIACAO" msdata:Caption="Usuário Criação" minOccurs="0">
+            <xs:simpleType>
+            <xs:restriction base="xs:string">
+                <xs:maxLength value="20" />
+            </xs:restriction>
+            </xs:simpleType>
+        </xs:element>
+        <xs:element name="CODGRUPOBEM" msdata:Caption="Título" minOccurs="0">
+            <xs:simpleType>
+            <xs:restriction base="xs:string">
+                <xs:maxLength value="25" />
+            </xs:restriction>
+            </xs:simpleType>
+        </xs:element>
+        <xs:element name="TOLSUPPRECO" msdata:Caption="Tolerância Superior Preço" type="xs:decimal" minOccurs="0" />
+        <xs:element name="MARGEMLUCROFISC" msdata:Caption="Margem do Lucro S.T." type="xs:decimal" minOccurs="0" />
+        <xs:element name="IDGRD" msdata:Caption="Código da Grade" type="xs:int" minOccurs="0" />
+        <xs:element name="PRODUTOBASE" msdata:Caption="Base para Grade Numerada" type="xs:short" default="0" minOccurs="0" />
+        <xs:element name="SERVICOPRODUTORMOFFICINA" msdata:Caption="Disponível para Manutenção/Locação" type="xs:short" default="0" minOccurs="0" />
+        <xs:element name="PRODUTOEPI" msdata:Caption="Integrado a Equipamento de Proteção Individual (EPI)" type="xs:short" default="0" minOccurs="0" />
+        <xs:element name="TRIBUTACAOECF" msdata:Caption="Tributação Cupom Fiscal " minOccurs="0">
+            <xs:simpleType>
+            <xs:restriction base="xs:string">
+                <xs:maxLength value="10" />
+            </xs:restriction>
+            </xs:simpleType>
+        </xs:element>
+        <xs:element name="DATAPRIMEIRAALT" msdata:Caption="Data da alteração mais antiga do produto" msdata:DateTimeMode="Unspecified" type="xs:dateTime" minOccurs="0" />
+        <xs:element name="CODIGOEX" msdata:Caption="Código EX" minOccurs="0">
+            <xs:simpleType>
+            <xs:restriction base="xs:string">
+                <xs:maxLength value="3" />
+            </xs:restriction>
+            </xs:simpleType>
+        </xs:element>
+        <xs:element name="CODCOLTBORCAMENTO" msdata:Caption="Natureza do Orçamento" type="xs:short" minOccurs="0" />
+        <xs:element name="CODTBORCAMENTO" msdata:Caption="Natureza do Orçamento" minOccurs="0">
+            <xs:simpleType>
+            <xs:restriction base="xs:string">
+                <xs:maxLength value="40" />
+            </xs:restriction>
+            </xs:simpleType>
+        </xs:element>
+        <xs:element name="IDPRDFISCALE" msdata:Caption="Classific. Fiscal Prod. Entrada" type="xs:int" minOccurs="0" />
+        <xs:element name="IDPRDFISCALS" msdata:Caption="Classific. Fiscal Prod. Saída" type="xs:int" minOccurs="0" />
+        <xs:element name="IMAGEM" type="xs:base64Binary" minOccurs="0" />
+        <xs:element name="HISTORICOCURTO" msdata:Caption="Histórico" minOccurs="0">
+            <xs:simpleType>
+            <xs:restriction base="xs:string">
+                <xs:maxLength value="255" />
+            </xs:restriction>
+            </xs:simpleType>
+        </xs:element>
+        <xs:element name="HISTORICOLONGO" msdata:Caption="Histórico" minOccurs="0">
+            <xs:simpleType>
+            <xs:restriction base="xs:string">
+                <xs:maxLength value="2147483647" />
+            </xs:restriction>
+            </xs:simpleType>
+        </xs:element>
+        <xs:element name="NUMERONBS" msdata:Caption="Código NBS do Serviço" minOccurs="0">
+            <xs:simpleType>
+            <xs:restriction base="xs:string">
+                <xs:maxLength value="14" />
+            </xs:restriction>
+            </xs:simpleType>
+        </xs:element>
+        <xs:element name="EXIGEFORNQUALIFICADO" msdata:Caption="Exigir Fornecedor Qualificado" type="xs:short" minOccurs="0" />
+        <xs:element name="PRODVISIVELCLICBUSINESS" msdata:Caption="Produto Visível ClicBusiness" type="xs:short" minOccurs="0" />
+        <xs:element name="CODCOLMARCA" msdata:Caption="Coligada Marca" type="xs:short" minOccurs="0" />
+        <xs:element name="IDMARCA" msdata:Caption="Marcas" type="xs:int" minOccurs="0" />
+        <xs:element name="CODUNDTRIBUTAVEL" msdata:Caption="Unidade Tributável no Comércio Exterior" minOccurs="0">
+            <xs:simpleType>
+            <xs:restriction base="xs:string">
+                <xs:maxLength value="5" />
+            </xs:restriction>
+            </xs:simpleType>
+        </xs:element>
+        <xs:element name="FATORCONVERSAOTRIBUTAVEL" msdata:Caption="Fator de Conversão Tributável Exterior" type="xs:decimal" minOccurs="0" />
+        <xs:element name="PERIGOSO" msdata:Caption="Produto Perigoso" type="xs:short" minOccurs="0" />
+        <xs:element name="INDPRODUCAOESCALARELEVANTE" msdata:Caption="Indicador de Produção em escala relevante" minOccurs="0">
+            <xs:simpleType>
+            <xs:restriction base="xs:string">
+                <xs:maxLength value="1" />
+            </xs:restriction>
+            </xs:simpleType>
+        </xs:element>
+        <xs:element name="CODUNDTRIBUTAVELINT" msdata:Caption="Unidade Tributável" minOccurs="0">
+            <xs:simpleType>
+            <xs:restriction base="xs:string">
+                <xs:maxLength value="5" />
+            </xs:restriction>
+            </xs:simpleType>
+        </xs:element>
+        <xs:element name="FATORCONVERSAOTRIBUTAVELINT" msdata:Caption="Fator de Conversão Tributável" type="xs:decimal" minOccurs="0" />
+        <xs:element name="PRDISENTOFUNRURAL" msdata:Caption="Isento de Tributação do FUNRURAL" type="xs:short" minOccurs="0" />
+        <xs:element name="REGISTROANVISA" msdata:Caption="Registro na ANVISA" minOccurs="0">
+            <xs:simpleType>
+            <xs:restriction base="xs:string">
+                <xs:maxLength value="15" />
+            </xs:restriction>
+            </xs:simpleType>
+        </xs:element>
+        <xs:element name="PERGLPPROD" msdata:Caption="Percentual de Gás Liquefeito de Petróleo" type="xs:decimal" minOccurs="0" />
+        <xs:element name="PERGLGNNACPROD" msdata:Caption="Percentual de Gás Natural Nacional" type="xs:decimal" minOccurs="0" />
+        <xs:element name="PERGLGNIMPPROD" msdata:Caption="Percentual de Gás Natural Importado" type="xs:decimal" minOccurs="0" />
+        <xs:element name="CODCOLTBORCAMENTORECEITA" msdata:Caption="Natureza do Orçamento (Receita) " minOccurs="0">
+            <xs:simpleType>
+            <xs:restriction base="xs:string">
+                <xs:maxLength value="10" />
+            </xs:restriction>
+            </xs:simpleType>
+        </xs:element>
+        <xs:element name="CODTBORCAMENTORECEITA" msdata:Caption="Natureza do Orçamento (Receita) " minOccurs="0">
+            <xs:simpleType>
+            <xs:restriction base="xs:string">
+                <xs:maxLength value="40" />
+            </xs:restriction>
+            </xs:simpleType>
+        </xs:element>
+        <xs:element name="VALORPARTIDA" msdata:Caption="Valor de Partida" type="xs:decimal" minOccurs="0" />
+        <xs:element name="MOTIVOISENCAOANVISA" msdata:Caption="Motivo de Isenção na ANVISA" minOccurs="0">
+            <xs:simpleType>
+            <xs:restriction base="xs:string">
+                <xs:maxLength value="256" />
+            </xs:restriction>
+            </xs:simpleType>
+        </xs:element>
+        <xs:element name="IDPATRIMONIO" msdata:Caption="Identificador do Patrimônio" type="xs:int" minOccurs="0" />
+        </xs:sequence>
+    </xs:complexType>
+</xs:element>
+<TPRODUTO>
+    <CODCOLPRD>6</CODCOLPRD>
+    <CODCOLIGADA>6</CODCOLIGADA>
+    <IDPRD>74437</IDPRD>
+    <CODIGOPRD>160147</CODIGOPRD>
+    <NOMEFANTASIA>SOCIOEMOCIONAL - COLEÇÃO EU NO MUNDO – ED. BERNOULLI – 1º ANO – KIT</NOMEFANTASIA>
+    <CODIGOREDUZIDO>12919</CODIGOREDUZIDO>
+    <CODFAB>0099</CODFAB>
+    <NUMNOFABRIC>160147</NUMNOFABRIC>
+    <ULTIMONIVEL>1</ULTIMONIVEL>
+    <TIPO>P</TIPO>
+    <DESCRICAO>SOCIOEMOCIONAL - COLEÇÃO EU NO MUNDO – ED. BERNOULLI – 1º ANO – KIT</DESCRICAO>
+    <PRECO1>210.0000</PRECO1>
+    <PRECO2>210.0000</PRECO2>
+    <PRECO3>0.0000</PRECO3>
+    <PRECO4>0.0000</PRECO4>
+    <PRECO5>0.0000</PRECO5>
+    <DATABASEPRECO1>2020-10-14T00:00:00</DATABASEPRECO1>
+    <DATABASEPRECO2>2020-10-14T00:00:00</DATABASEPRECO2>
+    <DATABASEPRECO3>2020-10-14T00:00:00</DATABASEPRECO3>
+    <DATABASEPRECO4>2020-10-14T00:00:00</DATABASEPRECO4>
+    <DATABASEPRECO5>2020-10-14T00:00:00</DATABASEPRECO5>
+    <CODMOEPRECO1>R$</CODMOEPRECO1>
+    <CODMOEPRECO2>R$</CODMOEPRECO2>
+    <NUMEROCCF>49019900</NUMEROCCF>
+    <REFERENCIACP>0</REFERENCIACP>
+    <CODUNDCONTROLE>UN</CODUNDCONTROLE>
+    <DTCADASTRAMENTO>2020-10-14T10:33:41</DTCADASTRAMENTO>
+    <CUSTOUNITARIO>102.4800</CUSTOUNITARIO>
+    <DTCUSTOUNITARIO>2021-12-29T00:00:00</DTCUSTOUNITARIO>
+    <QTDEVOLUME>1</QTDEVOLUME>
+    <CODUNDCOMPRA>UN</CODUNDCOMPRA>
+    <CODUNDVENDA>UN</CODUNDVENDA>
+    <CUSTOMEDIO>141.1300</CUSTOMEDIO>
+    <DATACUSTOMEDIO>2021-12-29T00:00:00</DATACUSTOMEDIO>
+    <CUSTOREPOSICAO>0.0000</CUSTOREPOSICAO>
+    <CUSTOREPOSICAOB>0.0000</CUSTOREPOSICAOB>
+    <USANUMDECPRECO>0</USANUMDECPRECO>
+    <INATIVO>0</INATIVO>
+    <PESAVEL>0</PESAVEL>
+    <DATAULTALTERACAO>2022-02-01T15:23:34</DATAULTALTERACAO>
+    <CONTROLADOPORLOTE>0</CONTROLADOPORLOTE>
+    <TIPOCALCULOCUSTO>0</TIPOCALCULOCUSTO>
+    <USANUMSERIE>0</USANUMSERIE>
+    <CODUSUARIO>marcal.freire</CODUSUARIO>
+    <USUARIOCRIACAO>uilton.alencar</USUARIOCRIACAO>
+    <PRODUTOBASE>0</PRODUTOBASE>
+    <SERVICOPRODUTORMOFFICINA>0</SERVICOPRODUTORMOFFICINA>
+    <PRODUTOEPI>0</PRODUTOEPI>
+    <EXIGEFORNQUALIFICADO>0</EXIGEFORNQUALIFICADO>
+    <PRODVISIVELCLICBUSINESS>0</PRODVISIVELCLICBUSINESS>
+    <PRDISENTOFUNRURAL>0</PRDISENTOFUNRURAL>
+  </TPRODUTO>
+

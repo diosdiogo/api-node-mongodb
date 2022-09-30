@@ -1,0 +1,21 @@
+<s:Envelope xmlns:s="http://schemas.xmlsoap.org/soap/envelope/">
+   <s:Body>
+      <SaveRecordResponse xmlns="http://www.totvs.com/">
+         <SaveRecordResult>Ocorreu um erro ao efetuar a leitura do registro: 
+Não foi definido o Código do Tipo de Movimento, para carregar os parâmetros!
+=======================================
+   em RM.Lib.Server.RMSDataServer.ReadRecordException(Exception ex)
+   em RM.Lib.Server.RMSDataServer.ReadRecord(ReadRecordEventArgs args)
+   em RM.Con.Conector.ConWSDataServer.SaveRecord(String DataServerName, String XML, String UserName, String UserPassword, String contexto, String emailUsuarioContexto)=======================================
+Não foi definido o Código do Tipo de Movimento, para carregar os parâmetros!
+=======================================
+   em RM.Mov.Parametros.MovParamsTMv.Read(Int32 codColigada, String codTipoMovimento, Boolean throwOnLoadError)
+   em RM.Mov.Movimento.MovMovimentoBaseData.get_movParamsTMv()
+   em RM.Mov.Movimento.MovMovimentoData.SetMovimentoNovo(DataTable tMov, Object[] pk)
+   em RM.Mov.Movimento.MovMovimentoData.DoReadRecord(DataSet dataSet, Object[] primaryKey, Object ownerData)
+   em RM.Lib.Server.RMSDataServer.DoReadRecord(DataSet dataSet, ReadRecordEventArgs args)
+   em RM.Lib.Server.RMSDataServer.InternalReadRecord(ReadRecordEventArgs args, Boolean skipSecurity, Boolean skipSecurityCollumns)
+   em RM.Lib.Server.RMSDataServer.ReadRecord(ReadRecordEventArgs args)</SaveRecordResult>
+      </SaveRecordResponse>
+   </s:Body>
+</s:Envelope>
