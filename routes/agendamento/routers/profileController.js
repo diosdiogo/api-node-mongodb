@@ -43,7 +43,7 @@ router.get('/list/:id', authetication, async (req, res) => {
     }
 })
 
-router.post('/save', authetication, async(req, res) => {
+router.post('/save', async(req, res) => {
     console.log(req.body)
    
     try {
