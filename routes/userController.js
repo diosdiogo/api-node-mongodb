@@ -23,30 +23,12 @@ router.get('/list', authetication, async (req, res) => {
     }
 })
 router.get('/list/:id', authetication, async (req, res) => {
+    console.log("logado")
     try {
         let users = await User.findById(req.params.id)
                                 .populate("profile")
                                 .populate("mentoringAdmin")
-        
-        var mentoring = [];
-        await users.mentoring.forEach(async (e, i) => {
-         MentoringAdmin.findOne({
-                _id: e.mentoring
-            })
-            .then(async (m) => {
-                console.log(m)
-                mentoring.push({m})
-            }).catch((err) => {
-                console.log(err)
-                res.status(400).send({
-                    message: erro,
-                    response: null
-                })
-            })
-        });
-
-        console.log(mentoring);
-        users.mentoring = mentoring;
+        console.log(users)
         res.json(users)
     } catch (e) {
         res.status(500).json({message: e.message})

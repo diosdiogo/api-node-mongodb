@@ -97,12 +97,9 @@ const userSchema = new mongoose.Schema({
         ref: "Login"
     },
     mentoring:
-    [
-        {
-            mentoring: {
-                type: mongoose.Schema.Types.ObjectId,
-                ref: "Mentoringadmin"
-            }
+    [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Mentoringadmin"
     }]
 })
 
