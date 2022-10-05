@@ -1,12 +1,14 @@
 const express = require('express')
 const router = express.Router()
+const soap = require('soap');
 const Login = require('../models/login')
 const md5 = require('md5');
 const jwt = require('jsonwebtoken');
+const url = process.env.URL_WSDL;
 require('dotenv').config()
 
 
-router.get('/', async (req, res) => {
+router.put('/', async (req, res) => {
     console.log(req.query)
     console.log(Login)
     const user = req.query.codusuario
@@ -32,6 +34,68 @@ router.get('/', async (req, res) => {
                 response: null
             })
         })
+        
+    } catch (error) {
+        res.status(500).json({message: error.message})
+    }
+});
+
+router.post('/', async (req, res) => {
+    
+    console.log(req.body)
+    console.log(Login)
+    const user = req.body.codusuario
+    const password = await md5(req.body.password)
+    try {
+        soap.createClient(url, function(err, client) {
+            client.setSecurity(new soap.BasicAuthSecurity(username, password));
+            client.AutenticaAcesso((e,r) => {
+                console.log("linha 54")
+                console.log(e)
+                console.log(r)
+                if(e) {
+                    console.log("linha 55")
+                    console.log(e)
+                    var error = XMLMapping.load(e.body);
+                    res.status(400).send({ error: error.s$Envelope.s$Body.s$Fault.faultstring.$t});            
+                }
+                if(r.AutenticaAcessoResult == 1){
+                    client.setSecurity(new soap.BasicAuthSecurity(process.env.USR_WSDL_ROOT, process.env.PWRD_WSDL_ROOT));
+                    client.ReadRecord({DataServerName: "GlbUsuarioData", PrimaryKey: username, Contexto: "CODSISTEMA=G"}, (err, result) => {
+                        if(err) {
+                            var error = XMLMapping.load(err.body);
+                            res.status(400).send({ error: error.s$Envelope.s$Body.s$Fault.faultstring.$t});            
+                        } 
+                        var user = JSON.parse(parser.toJson(result.ReadRecordResult));
+                        const token = jwt.sign({ id: user.id }, process.env.secret, {
+                            expiresIn: 86400
+                        })
+                        user.GlbUsuario.GUSUARIO.token = token;
+                        res.send(user.GlbUsuario.GUSUARIO);
+                    })
+                }
+            })
+        }
+        // Login.findOne({
+        //     email: user,
+        //     password: password
+        // })
+        // .populate("user")
+        // .populate("mentoringAdmin")
+        // .populate("profile")
+        
+        // .then(async (usuario) => {
+        //     const user = await getLoginReturn(usuario)
+        //     res.status(200).send({
+        //         response: user
+        //     })
+        // }).catch((err) => {
+        //     console.log(err)
+        //     res.status(400).send({
+        //         message: erro,
+        //         response: null
+        //     })
+        // })
         
     } catch (error) {
         res.status(500).json({message: error.message})
