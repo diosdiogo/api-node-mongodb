@@ -4,6 +4,7 @@ const soap = require('soap');
 const Login = require('../models/login')
 const md5 = require('md5');
 const jwt = require('jsonwebtoken');
+const XMLMapping = require('xml-mapping');
 const url = process.env.URL_WSDL;
 require('dotenv').config()
 
@@ -48,10 +49,13 @@ router.post('/', async (req, res) => {
     const password = await md5(req.body.password)
     try {
         soap.createClient(url, function(err, client) {
-            client.setSecurity(new soap.BasicAuthSecurity(username, password));
+            console.log("51")
+            console.log(client);
+            client.setSecurity(new soap.BasicAuthSecurity(user, password));
             client.AutenticaAcesso((e,r) => {
                 console.log("linha 54")
-                console.log(e)
+                console.log(e.Error)
+                console.log("linha 55")
                 console.log(r)
                 if(e) {
                     console.log("linha 55")
@@ -75,7 +79,7 @@ router.post('/', async (req, res) => {
                     })
                 }
             })
-        }
+        })
         // Login.findOne({
         //     email: user,
         //     password: password
