@@ -5,6 +5,7 @@ const Login = require('../models/login')
 const md5 = require('md5');
 const jwt = require('jsonwebtoken');
 const XMLMapping = require('xml-mapping');
+const parser = require('xml2json');
 const url = process.env.URL_WSDL;
 require('dotenv').config()
 
@@ -46,15 +47,16 @@ router.post('/', async (req, res) => {
     console.log(req.body)
     console.log(Login)
     const user = req.body.codusuario
-    const password = await md5(req.body.password)
+    const password = req.body.password
     try {
         soap.createClient(url, function(err, client) {
-            console.log("51")
-            console.log(client);
+            const soup = new soap.BasicAuthSecurity(user, password);
+            console.log("SOUP")
+            console.log(soup)
             client.setSecurity(new soap.BasicAuthSecurity(user, password));
             client.AutenticaAcesso((e,r) => {
                 console.log("linha 54")
-                console.log(e.Error)
+                console.log(e)
                 console.log("linha 55")
                 console.log(r)
                 if(e) {
@@ -65,17 +67,17 @@ router.post('/', async (req, res) => {
                 }
                 if(r.AutenticaAcessoResult == 1){
                     client.setSecurity(new soap.BasicAuthSecurity(process.env.USR_WSDL_ROOT, process.env.PWRD_WSDL_ROOT));
-                    client.ReadRecord({DataServerName: "GlbUsuarioData", PrimaryKey: username, Contexto: "CODSISTEMA=G"}, (err, result) => {
+                    client.ReadRecord({DataServerName: "GlbUsuarioData", PrimaryKey: user, Contexto: "CODSISTEMA=G"}, (err, result) => {
                         if(err) {
                             var error = XMLMapping.load(err.body);
                             res.status(400).send({ error: error.s$Envelope.s$Body.s$Fault.faultstring.$t});            
                         } 
-                        var user = JSON.parse(parser.toJson(result.ReadRecordResult));
-                        const token = jwt.sign({ id: user.id }, process.env.secret, {
+                        var userLogin = JSON.parse(parser.toJson(result.ReadRecordResult));
+                        const token = jwt.sign({ id: userLogin.id }, process.env.secret, {
                             expiresIn: 86400
                         })
-                        user.GlbUsuario.GUSUARIO.token = token;
-                        res.send(user.GlbUsuario.GUSUARIO);
+                        userLogin.GlbUsuario.GUSUARIO.token = token;
+                        res.send(userLogin.GlbUsuario.GUSUARIO);
                     })
                 }
             })
