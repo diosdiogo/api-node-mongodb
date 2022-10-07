@@ -5,7 +5,7 @@ const studentSubjectSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: "User"
     },
-    subject:[{
+    mentoringSubject:[{
         type: mongoose.Schema.Types.ObjectId,
         ref: "mentoringSubject"
     }],

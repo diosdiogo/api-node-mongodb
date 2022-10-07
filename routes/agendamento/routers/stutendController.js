@@ -7,6 +7,26 @@ const authetication = require('../../../middlewares/auth')
 require('dotenv').config()
 
 
+router.get('/list', authetication, async (req, res) => {
+    try {
+        StudentSubject.find()
+                      .populate("mentoringSubject")
+        .then(async (studentSubject) => {
+            res.status(200).send({
+                response: studentSubject
+            })
+        }).catch((err) => {
+            console.log(err)
+            res.status(400).send({
+                message: err,
+                response: null
+            })
+        })
+    }catch (error) {
+        res.status(500).json({message: error.message})
+    }
+})
+
 router.get('/list/:id', authetication, async (req, res) => {
     try {
         StudentSubject.findByID()
