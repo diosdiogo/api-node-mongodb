@@ -5,10 +5,10 @@ const studentSubjectSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: "User"
     },
-    mentoringSubject:[{
+    subject:[{
         type: mongoose.Schema.Types.ObjectId,
         ref: "mentoringSubject"
-    }],
+    }]
 })
 
 module.exports = mongoose.model('studentSubject', studentSubjectSchema)
