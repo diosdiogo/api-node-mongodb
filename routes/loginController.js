@@ -2,13 +2,13 @@ const express = require('express')
 const router = express.Router()
 const soap = require('soap');
 const Login = require('../models/login')
+const User = require('../models/user')
 const md5 = require('md5');
 const jwt = require('jsonwebtoken');
 const XMLMapping = require('xml-mapping');
 const parser = require('xml2json');
 const url = process.env.URL_WSDL;
 require('dotenv').config()
-
 
 router.put('/', async (req, res) => {
     console.log(req.query)
@@ -47,27 +47,21 @@ router.post('/', async (req, res) => {
     console.log(req.body)
     console.log(Login)
     const user = req.body.codusuario
-    const password = req.body.password
+    const passwordDB = await md5(req.body.password)
+    const password = req.body.password;
+
     try {
         soap.createClient(url, function(err, client) {
             const soup = new soap.BasicAuthSecurity(user, password);
-            console.log("SOUP")
-            console.log(soup)
             client.setSecurity(new soap.BasicAuthSecurity(user, password));
-            client.AutenticaAcesso((e,r) => {
-                console.log("linha 54")
-                console.log(e)
-                console.log("linha 55")
-                console.log(r)
+            client.AutenticaAcesso ((e,r) => {
                 if(e) {
-                    console.log("linha 55")
-                    console.log(e)
                     var error = XMLMapping.load(e.body);
                     res.status(400).send({ error: error.s$Envelope.s$Body.s$Fault.faultstring.$t});            
                 }
                 if(r.AutenticaAcessoResult == 1){
                     client.setSecurity(new soap.BasicAuthSecurity(process.env.USR_WSDL_ROOT, process.env.PWRD_WSDL_ROOT));
-                    client.ReadRecord({DataServerName: "GlbUsuarioData", PrimaryKey: user, Contexto: "CODSISTEMA=G"}, (err, result) => {
+                    client.ReadRecord({DataServerName: "GlbUsuarioData", PrimaryKey: user, Contexto: "CODSISTEMA=G"}, async (err, result) => {
                         if(err) {
                             var error = XMLMapping.load(err.body);
                             res.status(400).send({ error: error.s$Envelope.s$Body.s$Fault.faultstring.$t});            
@@ -76,32 +70,36 @@ router.post('/', async (req, res) => {
                         const token = jwt.sign({ id: userLogin.id }, process.env.secret, {
                             expiresIn: 86400
                         })
+
                         userLogin.GlbUsuario.GUSUARIO.token = token;
-                        res.send(userLogin.GlbUsuario.GUSUARIO);
+                        let userDB= {
+                            profile: {},
+                            mentoringAdmin: {}
+                        }
+                        var getU;
+                        getU = await getUser(userLogin.GlbUsuario.GUSUARIO, password, res);
+                        console.log("82")
+                        console.log(getU)
+                        if(getU === undefined){
+                            let param = {
+                                codusuario: userLogin.GlbUsuario.GUSUARIO.CODUSUARIO,
+                                password: password,
+                                profile: "633b4d76350e3e6e44d9b969"
+                            }
+                            getU = await setUser(userLogin.GlbUsuario.GUSUARIO, password);
+                            if(getU){
+                                console.log("91")
+                                getUser(userLogin.GlbUsuario.GUSUARIO, password, res);
+                            }
+                        }
+                        //userLogin.GlbUsuario.GUSUARIO.profile = getU.profile.profile;
+                        console.log("94")
+                        console.log(userLogin.GlbUsuario.GUSUARIO)
+                        //res.send(userLogin.GlbUsuario.GUSUARIO);
                     })
                 }
             })
         })
-        // Login.findOne({
-        //     email: user,
-        //     password: password
-        // })
-        // .populate("user")
-        // .populate("mentoringAdmin")
-        // .populate("profile")
-        
-        // .then(async (usuario) => {
-        //     const user = await getLoginReturn(usuario)
-        //     res.status(200).send({
-        //         response: user
-        //     })
-        // }).catch((err) => {
-        //     console.log(err)
-        //     res.status(400).send({
-        //         message: erro,
-        //         response: null
-        //     })
-        // })
         
     } catch (error) {
         res.status(500).json({message: error.message})
@@ -140,52 +138,63 @@ router.delete('/:id', async (req, res) => {
     }
 })
 
-async function getLoginReturn(resp) {
-    console.log(resp)
-    const token = jwt.sign({
-        id: resp._id,
-        senha: resp.password
-    }, process.env.secret, { expiresIn: '24h' })
-
-    const ret = {
-        profile: resp.profile.profile,
-        token: token,
-        user: {
-            aluno: resp.user.aluno,
-            matricula: resp.user.matricula,
-            cpf: resp.user.cpf,
-            dtnascimento: resp.user.dtnascimento,
-            sexo: resp.user.sexo,
-            email: resp.user.email,
-            pai: resp.user.pai,
-            pai_falecido:resp.user.pai_falecido,
-            email1: resp.user.email1,
-            mae: resp.user.mae,
-            mae_falecido: resp.user.mae_falecido,
-            email2: resp.user.email2,
-            curso: resp.user.curso,
-            habilitacao: resp.user.habilitacao,
-            turno: resp.user.turno,
-            turma: resp.user.turma,
-            dtmatricula: resp.user.dtmatricula,
-            codcoligada: resp.user.codcoligada,
-            tipo_aluno: resp.user.tipo_aluno,
-            endereco: resp.user.endereco,
-            cidade: resp.user.cidade,
-            bairro: resp.user.bairro,
-            estado: resp.user.estado,
-            cep: resp.user.cep,
-            imagem: resp.user.imagem,
-            codcfo: resp.user.codcfo,
-            codcolcfo: resp.user.codcolcfo,
-            codpessoa: resp.user.codpessoa
-        },
-        mentoring: [
-            ...resp.user.mentoring
-        ]
-    };
-    console.log(ret)
-    return ret;
+async function getUser(user, password, res) {
+    console.warn(141)
+    const pass = await md5(password)
+    console.log(pass)
+    console.log(user.CODUSUARIO)
+    try {
+        User.findOne({
+            codusuario: user.CODUSUARIO,
+            password: pass
+        })
+        .populate("mentoringAdmin")
+        .populate("profile")
+        
+        .then(async (usuario) => {
+            if(usuario){
+                const profile = usuario.profile.profile
+                res.status(200).send({
+                    user,
+                    profile
+                });
+            }
+            return usuario;
+        }).catch((err) => {
+            console.log(err)
+           return null;
+        })
+        
+    } catch (error) {
+        res.status(500).json({message: error.message})
+    }
 }
+
+async function setUser(user, password) {
+    const param = {
+        codusuario: user.CODUSUARIO,
+        password: password,
+        profile: "633b4d76350e3e6e44d9b969"
+    }
+    console.log(param)
+    try {
+        new User({
+            ...param
+        }).save().then( async (newUser) => {
+            console.log("178")
+            console.log(newUser)
+            return newUser
+        }).catch(function(erro) {
+            console.log(erro)
+            res.status(400).send({
+                message: erro,
+                response: null
+            })
+        }) 
+    } catch (e) {
+        res.status(400).json({message: e.message})
+    }   
+}
+
 
 module.exports = router

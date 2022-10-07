@@ -2,19 +2,15 @@ const mongoose = require('mongoose');
 
 const MentoringAdminSchema = new mongoose.Schema({
 
-    subject: 
-        [{
-            type: mongoose.Schema.Types.ObjectId,
-            ref: "mentoringSubject"
-        }],
+    subject:[{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "mentoringSubject"
+    }],
         
-    classes: [
-        {
-            classes: {
-                type: mongoose.Schema.Types.ObjectId,
-                ref: "Class"
-            }
-        }],
+    class: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "class"
+    }],
     spaces: {
         type: Number,
     },

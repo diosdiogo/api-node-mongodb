@@ -1,0 +1,49 @@
+const express = require('express')
+const router = express.Router()
+const ClassSubject = require('../../../models/class')
+const Student = require('../../../models/user')
+const StudentSubject = require('../../../models/studentSubject')
+const authetication = require('../../../middlewares/auth')
+require('dotenv').config()
+
+
+router.get('/list/:id', authetication, async (req, res) => {
+    try {
+        StudentSubject.findByID()
+                      .populate("subject")
+        .then(async (studentSubject) => {
+            res.status(200).send({
+                response: studentSubject
+            })
+        }).catch((err) => {
+            console.log(err)
+            res.status(400).send({
+                message: err,
+                response: null
+            })
+        })
+    }catch (error) {
+        res.status(500).json({message: error.message})
+    }
+})
+
+router.post('/save/', authetication, async (req, res) => {
+    try {
+        new StudentSubject({
+            ...req.body
+        }).save().then((newMentoringAdmin) => {
+            res.status(201).json(newMentoringAdmin)
+        }).catch(function(erro) {
+            console.log(erro)
+            res.status(400).send({
+                message: erro,
+                response: null
+            })
+        }) 
+    } catch (e) {
+        res.status(400).json({message: e.message})
+    }
+})
+
+
+module.exports = router
