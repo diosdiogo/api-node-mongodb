@@ -8,11 +8,11 @@ require('dotenv').config()
 
 router.get('/studentSubject/:id', authetication, async (req, res) => {
     console.log("10")
-    console.log(req.query)
+    console.log(req.params)
     try {
-        StudentSubject.findOne(
-            req.query.student
-            )
+        StudentSubject.findOne({
+            student: req.params.id
+            })
                       .populate("subject")
         .then(async (studentSubject) => {
             res.status(200).send({
@@ -21,7 +21,6 @@ router.get('/studentSubject/:id', authetication, async (req, res) => {
         }).catch((err) => {
             console.log(err)
             res.status(400).send({
-                message: err,
                 response: null
             })
         })

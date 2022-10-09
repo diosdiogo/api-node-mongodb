@@ -44,6 +44,41 @@ router.get('/list/:id', authetication, async (req, res) => {
         res.status(500).json({message: error.message})
     }
 })
+
+router.get('/subject', authetication, async (req, res) => {
+    console.log(req.query)
+    try {
+        Scheduling.find(req.query)
+                  .populate('subject')
+        .then(async (scheduling) => {
+            let sched = [];
+
+            scheduling.forEach((item, key) => {
+                sched.push({
+                    id: item.id,
+                    student: item.student,
+                    subject: item.subject.name,
+                    week: item.week,
+                    day: item.day,
+                    time: item.time,
+                    start: item.start,
+                    end: item.end
+                })
+            })
+            res.status(200).send({
+                response: sched
+            })
+        }).catch((err) => {
+            console.log(err)
+            res.status(400).send({
+                message: err,
+                response: null
+            })
+        })
+    }catch (error) {
+        res.status(500).json({message: error.message})
+    }
+})
 router.post('/save', authetication, async (req, res) => {
     console.log(req.body)
     try {
