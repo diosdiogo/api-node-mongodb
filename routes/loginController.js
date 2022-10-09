@@ -154,7 +154,9 @@ async function getUser(user, password, res) {
         .then(async (usuario) => {
             if(usuario){
                 const profile = usuario.profile.profile
+                const id = usuario.id
                 res.status(200).send({
+                    id,
                     user,
                     profile
                 });
